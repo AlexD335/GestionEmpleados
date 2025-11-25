@@ -1,0 +1,72 @@
+﻿@model ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h1 class="card-title">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Error
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <h2 class="text-danger">Ha ocurrido un error inesperado</h2>
+
+                    <div class="alert alert-warning mt-4">
+                        <h4>
+                            <i class="fas fa-bug me-2"></i>Detalles del Error:
+                        </h4>
+                        <p class="mb-1">
+                            <strong>Request ID:</strong>
+                            <code>@Model.RequestId</code>
+                        </p>
+                        @if (Model.ShowRequestId)
+                        {
+                            <p class="small text-muted mt-2">
+                                Proporciona este ID al administrador del sistema para ayudar en la solución del problema.
+                            </p>
+                        }
+                    </div>
+
+                    <div class="mt-4">
+                        <p>Por favor, intenta una de las siguientes opciones:</p>
+                        <div class="btn-group" role="group">
+                            <a href="javascript:history.back()" class="btn btn-outline-primary">
+                                <i class="fas fa-arrow-left me-1"></i>Volver Atrás
+                            </a>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                                <i class="fas fa-home me-1"></i>Ir al Inicio
+                            </a>
+                            <a asp-controller="Empleados" asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="fas fa-users me-1"></i>Ver Empleados
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información para desarrolladores -->
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <div class="card mt-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-tools me-2"></i>Información para Desarrolladores
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="small">
+                            <strong>Controller:</strong> @ViewContext.RouteData.Values["controller"]<br>
+                            <strong>Action:</strong> @ViewContext.RouteData.Values["action"]<br>
+                            <strong>Time:</strong> @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

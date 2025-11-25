@@ -1,0 +1,224 @@
+﻿@model GestionEmpleados.Models.Empleado
+
+@{
+    ViewData["Title"] = "Detalles del Empleado";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="fas fa-user-circle me-2"></i>@ViewData["Title"]</h1>
+    <div class="btn-group">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+            <i class="fas fa-edit me-1"></i>Editar
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i>Volver
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Información Principal -->
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-id-card me-2"></i>Información Personal
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary">Nombre Completo</label>
+                            <p class="form-control-plaintext border-bottom pb-2">@Model.Nombre</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary">Número de Documento</label>
+                            <p class="form-control-plaintext border-bottom pb-2">@Model.Documento</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary">Correo Electrónico</label>
+                            <p class="form-control-plaintext border-bottom pb-2">
+                                @if (!string.IsNullOrEmpty(Model.Email))
+                                {
+                                    <a href="mailto:@Model.Email" class="text-decoration-none">
+                                        <i class="fas fa-envelope me-1"></i>@Model.Email
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No especificado</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary">Teléfono</label>
+                            <p class="form-control-plaintext border-bottom pb-2">
+                                @if (!string.IsNullOrEmpty(Model.Telefono))
+                                {
+                                    <a href="tel:@Model.Telefono" class="text-decoration-none">
+                                        <i class="fas fa-phone me-1"></i>@Model.Telefono
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No especificado</span>
+                                }
+                            </p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary">Cargo</label>
+                            <p class="form-control-plaintext border-bottom pb-2">
+                                @if (!string.IsNullOrEmpty(Model.Cargo))
+                                {
+                                    @Model.Cargo
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No especificado</span>
+                                }
+                            </p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary">Salario</label>
+                            <p class="form-control-plaintext border-bottom pb-2">
+                                @if (Model.Salario > 0)
+                                {
+                                    <text>$@Model.Salario.ToString("N0")</text>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No especificado</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold text-primary">Dirección</label>
+                    <p class="form-control-plaintext border-bottom pb-2">
+                        @if (!string.IsNullOrEmpty(Model.Direccion))
+                        {
+                            @Model.Direccion
+                        }
+                        else
+                        {
+                            <span class="text-muted">No especificada</span>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Información Laboral y Estado -->
+    <div class="col-md-4">
+        <!-- Estado del Empleado -->
+        <div class="card mb-4">
+            <div class="card-header @(Model.Activo ? "bg-success" : "bg-danger") text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-user-check me-2"></i>Estado Laboral
+                </h5>
+            </div>
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="fas @(Model.Activo ? "fa-user-check text-success" : "fa-user-slash text-danger") fa-3x mb-3"></i>
+                    <h5 class="@(Model.Activo ? "text-success" : "text-danger")">
+                        @(Model.Activo ? "EMPLEADO ACTIVO" : "EMPLEADO INACTIVO")
+                    </h5>
+                </div>
+                <span class="badge @(Model.Activo ? "bg-success" : "bg-danger") fs-6 p-2">
+                    @(Model.Activo ? "✓ Activo" : "✗ Inactivo")
+                </span>
+            </div>
+        </div>
+
+        <!-- Fechas Importantes -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-calendar-alt me-2"></i>Fechas Importantes
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="fw-bold text-info">Fecha de Ingreso</label>
+                    <p class="form-control-plaintext border-bottom pb-2">
+                        <i class="fas fa-sign-in-alt me-1"></i>
+                        @Model.FechaIngreso.ToString("dd/MM/yyyy")
+                    </p>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold text-info">Fecha de Creación</label>
+                    <p class="form-control-plaintext border-bottom pb-2">
+                        <i class="fas fa-plus-circle me-1"></i>
+                        @Model.FechaCreacion.ToString("dd/MM/yyyy HH:mm")
+                    </p>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold text-info">Tiempo en la Empresa</label>
+                    <p class="form-control-plaintext">
+                        <i class="fas fa-clock me-1"></i>
+                        @{
+                            var tiempo = DateTime.Now - Model.FechaIngreso;
+                            var años = tiempo.Days / 365;
+                            var meses = (tiempo.Days % 365) / 30;
+                            var dias = tiempo.Days % 30;
+                            <text>@años año(s), @meses mes(es) y @dias día(s)</text>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botones de Acción -->
+<div class="card mt-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h6 class="mb-0">Opciones de Gestión</h6>
+            </div>
+            <div class="btn-group" role="group">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning px-4">
+                    <i class="fas fa-edit me-1"></i>Editar Empleado
+                </a>
+                <a asp-action="Index" class="btn btn-outline-primary px-4">
+                    <i class="fas fa-list me-1"></i>Ver Todos los Empleados
+                </a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary px-4">
+                    <i class="fas fa-home me-1"></i>Ir al Inicio
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Información del Sistema -->
+<div class="card mt-4">
+    <div class="card-header bg-light">
+        <h6 class="card-title mb-0">
+            <i class="fas fa-database me-2"></i>Información del Sistema
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <small class="text-muted">ID del Registro</small>
+                <p class="fw-bold">@Model.Id</p>
+            </div>
+            <div class="col-md-4">
+                <small class="text-muted">Última Actualización</small>
+                <p class="fw-bold">@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</p>
+            </div>
+            <div class="col-md-4">
+                <small class="text-muted">Estado en Base de Datos</small>
+                <p class="fw-bold text-success">✓ Registrado</p>
+            </div>
+        </div>
+    </div>
+</div>

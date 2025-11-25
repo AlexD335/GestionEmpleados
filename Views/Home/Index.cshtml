@@ -1,0 +1,173 @@
+﻿@{
+    ViewData["Title"] = "Inicio - Sistema de Gestión";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="fas fa-tachometer-alt me-2"></i>Dashboard</h1>
+    <div class="btn-group">
+        <a asp-controller="Empleados" asp-action="Create" class="btn btn-success">
+            <i class="fas fa-user-plus me-1"></i>Nuevo Empleado
+        </a>
+        <a asp-controller="Empleados" asp-action="Index" class="btn btn-primary">
+            <i class="fas fa-list me-1"></i>Ver Todos
+        </a>
+    </div>
+</div>
+
+<!-- Tarjetas de Estadísticas -->
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Total Empleados</h5>
+                        <h2 class="mb-0">@(ViewBag.TotalEmpleados ?? "0")</h2>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Empleados Activos</h5>
+                        <h2 class="mb-0">@(ViewBag.EmpleadosActivos ?? "0")</h2>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-user-check fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Nuevos Este Mes</h5>
+                        <h2 class="mb-0">@(ViewBag.NuevosEsteMes ?? "0")</h2>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-chart-line fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Salario Promedio</h5>
+                        <h2 class="mb-0">$@(ViewBag.SalarioPromedio ?? "0")</h2>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-money-bill-wave fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Información del Sistema -->
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-rocket me-2"></i>Bienvenido al Sistema de Gestión
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Sistema desarrollado con <strong>ASP.NET Core MVC</strong> y <strong>Entity Framework</strong>
+                    para la gestión completa de empleados. Incluye todas las operaciones CRUD
+                    (Crear, Leer, Actualizar, Eliminar) con interfaz moderna y responsive.
+                </p>
+
+                <h6 class="mt-4">
+                    <i class="fas fa-check-circle text-success me-2"></i>Características Principales:
+                </h6>
+                <ul>
+                    <li>Gestión completa de empleados</li>
+                    <li>Interfaz moderna con Bootstrap 5</li>
+                    <li>Validaciones de datos integradas</li>
+                    <li>Base de datos SQL Server</li>
+                    <li>Diseño responsive para móviles</li>
+                    <li>Mensajes de confirmación</li>
+                </ul>
+
+                <div class="mt-4">
+                    <a asp-controller="Empleados" asp-action="Index" class="btn btn-primary btn-lg">
+                        <i class="fas fa-play me-2"></i>Comenzar a Gestionar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-bolt me-2"></i>Acciones Rápidas
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-controller="Empleados" asp-action="Create" class="btn btn-success">
+                        <i class="fas fa-user-plus me-2"></i>Agregar Empleado
+                    </a>
+                    <a asp-controller="Empleados" asp-action="Index" class="btn btn-outline-primary">
+                        <i class="fas fa-list me-2"></i>Lista Completa
+                    </a>
+                    <a asp-controller="Home" asp-action="Privacy" class="btn btn-outline-info">
+                        <i class="fas fa-shield-alt me-2"></i>Política de Privacidad
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información Técnica -->
+        <div class="card mt-4">
+            <div class="card-header bg-light">
+                <h6 class="card-title mb-0">
+                    <i class="fas fa-cogs me-2"></i>Información Técnica
+                </h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled small">
+                    <li><strong>Framework:</strong> .NET 8.0</li>
+                    <li><strong>Patrón:</strong> MVC</li>
+                    <li><strong>ORM:</strong> Entity Framework</li>
+                    <li><strong>Base de Datos:</strong> SQL Server</li>
+                    <li><strong>UI:</strong> Bootstrap 5 + Font Awesome</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script para actualizar estadísticas -->
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simular carga de datos si es necesario
+            console.log('Dashboard cargado correctamente');
+
+            // Puedes agregar aquí llamadas AJAX para actualizar estadísticas en tiempo real
+        });
+    </script>
+}

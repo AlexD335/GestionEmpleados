@@ -1,0 +1,111 @@
+﻿@model GestionEmpleados.Models.Empleado
+
+@{
+    ViewData["Title"] = "Nuevo Empleado";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="fas fa-user-plus me-2"></i>@ViewData["Title"]</h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left me-1"></i>Volver al Listado
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-info-circle me-2"></i>Información del Empleado
+        </h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" class="needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Nombre" class="form-label fw-bold">Nombre Completo *</label>
+                        <input asp-for="Nombre" class="form-control" placeholder="Ej: Juan Pérez García" />
+                        <span asp-validation-for="Nombre" class="text-danger small"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Documento" class="form-label fw-bold">Número de Documento *</label>
+                        <input asp-for="Documento" class="form-control" placeholder="Ej: 123456789" />
+                        <span asp-validation-for="Documento" class="text-danger small"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Correo Electrónico</label>
+                        <input asp-for="Email" class="form-control" placeholder="Ej: juan.perez@empresa.com" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Telefono" class="form-label fw-bold">Teléfono</label>
+                        <input asp-for="Telefono" class="form-control" placeholder="Ej: +57 300 123 4567" />
+                        <span asp-validation-for="Telefono" class="text-danger small"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Cargo" class="form-label fw-bold">Cargo</label>
+                        <input asp-for="Cargo" class="form-control" placeholder="Ej: Desarrollador Senior" />
+                        <span asp-validation-for="Cargo" class="text-danger small"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Salario" class="form-label fw-bold">Salario</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input asp-for="Salario" class="form-control" placeholder="Ej: 5000000" />
+                        </div>
+                        <span asp-validation-for="Salario" class="text-danger small"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="FechaIngreso" class="form-label fw-bold">Fecha de Ingreso</label>
+                        <input asp-for="FechaIngreso" class="form-control" type="date" />
+                        <span asp-validation-for="FechaIngreso" class="text-danger small"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label class="form-label fw-bold">Estado del Empleado</label>
+                        <div class="form-check form-switch mt-2">
+                            <input asp-for="Activo" class="form-check-input" type="checkbox" checked />
+                            <label asp-for="Activo" class="form-check-label">Empleado Activo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="Direccion" class="form-label fw-bold">Dirección Completa</label>
+                <textarea asp-for="Direccion" class="form-control" rows="3"
+                          placeholder="Ej: Calle 123 #45-67, Ciudad, Departamento"></textarea>
+                <span asp-validation-for="Direccion" class="text-danger small"></span>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-end border-top pt-3">
+                <button type="submit" class="btn btn-success px-4">
+                    <i class="fas fa-save me-1"></i>Guardar Empleado
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                    <i class="fas fa-times me-1"></i>Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
