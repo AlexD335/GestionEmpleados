@@ -1,17 +1,17 @@
-# 🏢 Sistema de Gestión de Empleados
+# Sistema de Gestión de Empleados
 
 Una aplicación web moderna desarrollada con **ASP.NET Core MVC** para la gestión completa de empleados.
 
-## 🚀 Características
+# Características
 
-- ✅ **CRUD Completo** - Crear, leer, actualizar y eliminar empleados
-- ✅ **Interfaz Moderna** - Bootstrap 5 + Font Awesome
-- ✅ **Base de Datos** - Entity Framework + SQL Server
-- ✅ **Validaciones** - Data Annotations integradas
-- ✅ **Responsive** - Compatible con móviles y desktop
-- ✅ **Soft Delete** - Eliminación lógica de registros
+- **CRUD Completo** - Crear, leer, actualizar y eliminar empleados
+- **Interfaz Moderna** - Bootstrap 5 + Font Awesome
+- **Base de Datos** - Entity Framework + SQL Server
+- **Validaciones** - Data Annotations integradas
+- **Responsive** - Compatible con móviles y desktop
+- **Soft Delete** - Eliminación lógica de registros
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **Backend:** ASP.NET Core 8.0 MVC
 - **Frontend:** Bootstrap 5, Font Awesome, JavaScript
@@ -19,7 +19,7 @@ Una aplicación web moderna desarrollada con **ASP.NET Core MVC** para la gesti�
 - **Base de Datos:** SQL Server LocalDB
 - **Patrón:** Model-View-Controller (MVC)
 
-## 📦 Instalación
+## Instalación
 
 ### Prerrequisitos
 - .NET 9.0 SDK
@@ -28,5 +28,28 @@ Una aplicación web moderna desarrollada con **ASP.NET Core MVC** para la gesti�
 
 ### Pasos
 1. Clonar el repositorio
-```bash
+```bash 
 git clone https://github.com/TuUsuario/GestionEmpleados.git
+```
+
+2. Restaurar paquetes NuGet
+```bash 
+dotnet restore
+```
+
+3. Configurar base de datos
+```bash 
+# Ejecutar migraciones
+dotnet ef database update
+```
+
+4. Ejecutar la aplicación
+```bash 
+dotnet run
+# o ejecutar desde Visual Studio con F5
+```
+
+5. Abrir en navegador
+```bash 
+https://localhost:7000
+```
